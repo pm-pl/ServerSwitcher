@@ -12,6 +12,7 @@ use pocketmine\utils\Config;
 use pocketmine\Server;
 
 class Main extends PluginBase{
+  private $servers;
   public function onEnable(): void{
     $this->getLogger()->info("Enabling the Plugin...");
     
