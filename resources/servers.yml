@@ -1,0 +1,7 @@
+servers:
+  - name: "Server1"
+    ip: "0.0.0.0"
+    port: 19132
+  - name: "Server2"
+    ip: "0.0.0.0"
+    port: 19133
