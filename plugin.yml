@@ -5,15 +5,15 @@ version: 1.0
 author: iMD14
 website: https://bukkitteam.letz.dev
 
-main: BukkitTeam\BukkitSRV\Main
+main: iMD14\ServerSwitcher\Main
 api: 5.1.2
-src-namespace-prefix: BukkitTeam\BukkitSRV
+src-namespace-prefix: iMD14\ServerSwitcher
 
 commands:
   server:
     description: Transfers you to a target server
-    permission: bukkitsrv.use
+    permission: serverswitcher.use
 permissions:
-  bukkitsrv.use:
+  serverswitcher.use:
     default: true
 ...
