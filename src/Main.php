@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BukkitTeam\BukkitSRV;
+namespace iMD14\ServerSwitcher;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\player\Player;
