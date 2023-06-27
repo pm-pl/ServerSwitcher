@@ -1,0 +1,19 @@
+---
+name: BukkitSRV
+description: a plugin adds a simple server switching command to your server allowing users to quickly switch between different servers on the network
+version: 1.0-Beta
+author: BukkitTeam
+website: https://bukkitteam.letz.dev
+
+main: BukkitTeam\BukkitSRV\Main
+api: 5.1.2
+src-namespace-prefix: BukkitTeam\BukkitSRV
+
+commands:
+  server:
+    description: Transfers you to a target server
+    permission: bukkitsrv.use
+permissions:
+  bukkitsrv.use:
+    default: true
+...
