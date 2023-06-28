@@ -5,7 +5,7 @@ version: 1.0
 authors: [iMD14, NotNellie]
 
 main: iMD14\ServerSwitcher\Main
-api: 5.1.2
+api: [5.0.0, 5.1.2]
 src-namespace-prefix: iMD14\ServerSwitcher
 
 commands:
