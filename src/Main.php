@@ -14,17 +14,11 @@ use pocketmine\Server;
 class Main extends PluginBase{
   public $servers;
   public function onEnable(): void{
-    $this->getLogger()->info("Enabling the Plugin...");
-    
     @mkdir($this->getDataFolder());
     $this->saveResource("servers.yml");
     #$this->saveDefaultConfig();
     $this->getResource("servers.yml");
     $this->servers = new Config($this->getDataFolder() . "servers.yml", Config::YAML);
-    $this->getLogger()->info("Plugin is ready to use");
-  }
-  public function onDisable() : void{
-    $this->getLogger()->info("Disabled");
   }
 
 public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
