@@ -48,6 +48,21 @@ public function onCommand(CommandSender $sender, Command $command, string $label
             return false;
         default:
             return false;
+        case "servers":
+            $config = new Config($this->getDataFolder() . "servers.yml", CONFIG::YAML);
+            $serverData = $this->serversConfig->getAll()["server"] ?? [];
+            
+            $sender->sendMessage("Server List:");
+            $serverNames = [];
+            foreach ($serverData as $server) {
+                $name = $server['name'] ?? "Unknown";
+                $serverNames[] = "Server" . count($serverNames) + 1 . ": " . $name;
+                }
+            $sender->sendMessage(implode(", ", $serverNames));
+            return true;
+              
+        
     }
+    return false;
 }
 }
