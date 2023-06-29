@@ -9,10 +9,11 @@ use pocketmine\player\Player;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\Config;
+use iMD14\ServerSwitcher\VersionInfo;
 use pocketmine\Server;
 
 class Main extends PluginBase{
-  public $servers;
+  public $versionInfo = VersionInfo::class;
   public $serversConfig;
   public $version;
   public $data;
@@ -23,11 +24,10 @@ public function onEnable(): void{
     $url = "https://poggit.pmmp.io/plugins.json?name=ServerSwitcher";
     $response = file_get_contents($url);
     $data = json_decode($response, true);
-    $version = $data[0]['version'];
-    $currentVersion = $this->getDescription()->getVersion();
-    $latestVersion = $version; // Replace with the latest version obtained from Poggit or any other source
-
-    if ($currentVersion !== $latestVersion) {
+    $latestVersion = $data[0]['version'];
+  
+    $this->getLogger()->info($this->versionInfo::VERSION . $latestVersion);
+    if ($this->versionInfo::VERSION !== $latestVersion) {
         $owner = $this->getDescription()->getAuthors()[0] ?? "Unknown";
         $message = "Your plugin is not updated! Latest version: $latestVersion";
         $this->getServer()->getLogger()->warning($message);
