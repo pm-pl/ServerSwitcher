@@ -49,20 +49,22 @@ public function onCommand(CommandSender $sender, Command $command, string $label
         default:
             return false;
         case "servers":
-            $config = new Config($this->getDataFolder() . "servers.yml", CONFIG::YAML);
-            $serverData = $this->serversConfig->getAll()["server"] ?? [];
-            
-            $sender->sendMessage("Server List:");
-            $serverNames = [];
-            foreach ($serverData as $server) {
-                $name = $server['name'] ?? "Unknown";
-                $serverNames[] = "Server" . count($serverNames) + 1 . ": " . $name;
+            case 'servers':
+                $this->serversConfig = new Config($this->getDataFolder() . "servers.yml", Config::YAML);
+
+                $serverData = $this->serversConfig->getAll()["servers"] ?? [];
+
+                $serverNames = [];
+                foreach ($serverData as $index => $server) {
+                    $name = $server["name"] ?? "Unknown";
+                    $serverNames[] = "Server" . ($index + 1) . ($server["port"] ?? "") . "**";
                 }
-            $sender->sendMessage(implode(", ", $serverNames));
-            return true;
-              
-        
+
+                $sender->sendMessage(implode(", ", $serverNames));
+
+                return true;
+        }
+        return false;
     }
-    return false;
 }
 }
