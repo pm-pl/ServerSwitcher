@@ -14,8 +14,10 @@ use pocketmine\Server;
 class Main extends PluginBase{
   public $servers;
   public $serversConfig;
-private function reloadConfig();
-  public function onEnable(): void{
+private function reloadConfig(): void{
+  $this->serversConfig->reload();
+  }
+public function onEnable(): void{
     @mkdir($this->getDataFolder());
     $this->saveResource("servers.yml");
     #$this->saveDefaultConfig();
