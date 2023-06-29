@@ -14,6 +14,7 @@ use pocketmine\Server;
 class Main extends PluginBase{
   public $servers;
   public $serversConfig;
+private function reloadConfig();
   public function onEnable(): void{
     @mkdir($this->getDataFolder());
     $this->saveResource("servers.yml");
@@ -50,7 +51,6 @@ public function onCommand(CommandSender $sender, Command $command, string $label
         default:
             return false;
         case "servers":
-            case 'servers':
                 $this->serversConfig = new Config($this->getDataFolder() . "servers.yml", Config::YAML);
 
                 $serverData = $this->serversConfig->getAll()["servers"] ?? [];
@@ -64,6 +64,10 @@ public function onCommand(CommandSender $sender, Command $command, string $label
                 $sender->sendMessage(implode(", ", $serverNames));
 
                 return true;
+        case "swrconfig":
+            $this->reloadConfig();
+            $sender->sendMessage("Config Reloaded successfully");
+            return true;
         }
     }
 }
