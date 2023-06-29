@@ -28,8 +28,7 @@ public function onEnable(): void{
   
     $this->getLogger()->info($this->versionInfo::VERSION . $latestVersion);
     if ($this->versionInfo::VERSION !== $latestVersion) {
-        $owner = $this->getDescription()->getAuthors()[0] ?? "Unknown";
-        $message = "Your plugin is not updated! Latest version: $latestVersion";
+        $message = "Your plugin is not updated! Latest version: $latestVersion.";
         $this->getServer()->getLogger()->warning($message);
     }
     @mkdir($this->getDataFolder());
