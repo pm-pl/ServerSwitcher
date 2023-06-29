@@ -25,7 +25,7 @@ public function onEnable(): void{
     $data = json_decode($response, true);
     $version = $data['ServerSwitcher']['version'];
     $currentVersion = $this->getDescription()->getVersion();
-    $latestVersion = "1.1"; // Replace with the latest version obtained from Poggit or any other source
+    $latestVersion = $version; // Replace with the latest version obtained from Poggit or any other source
 
     if ($currentVersion !== $latestVersion) {
         $owner = $this->getDescription()->getAuthors()[0] ?? "Unknown";
