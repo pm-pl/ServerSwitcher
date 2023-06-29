@@ -12,6 +12,9 @@ commands:
   server:
     description: Transfers you to a target server
     permission: serverswitcher.use
+  servers:
+    description: Display available servers
+    permission: serverswitcher.use
 permissions:
   serverswitcher.use:
     default: true
