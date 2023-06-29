@@ -14,10 +14,25 @@ use pocketmine\Server;
 class Main extends PluginBase{
   public $servers;
   public $serversConfig;
+  public $version;
+  public $data;
 public function reloadConfig(): void{
   $this->serversConfig->reload();
   }
 public function onEnable(): void{
+    $url = "https://poggit.pmmp.io/plugins.json?name=ServerSwitcher";
+    $response = file_get_contents($url);
+    $data = json_decode($response, true);
+    $version = $data['ServerSwitcher']['version'];
+    $currentVersion = $this->getDescription()->getVersion();
+    $latestVersion = "1.1"; // Replace with the latest version obtained from Poggit or any other source
+
+    if ($currentVersion !== $latestVersion) {
+        $owner = $this->getDescription()->getAuthors()[0] ?? "Unknown";
+        $message = "Your plugin is not updated! Latest version: $latestVersion";
+        $this->getServer()->getLogger()->warning($message);
+        $this->getServer()->getPlayer($owner)->sendMessage($message);
+    }
     @mkdir($this->getDataFolder());
     $this->saveResource("servers.yml");
     #$this->saveDefaultConfig();
