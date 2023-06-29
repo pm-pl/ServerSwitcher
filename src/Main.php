@@ -13,6 +13,7 @@ use pocketmine\Server;
 
 class Main extends PluginBase{
   public $servers;
+  public $serversConfig;
   public function onEnable(): void{
     @mkdir($this->getDataFolder());
     $this->saveResource("servers.yml");
