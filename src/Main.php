@@ -31,7 +31,6 @@ public function onEnable(): void{
         $owner = $this->getDescription()->getAuthors()[0] ?? "Unknown";
         $message = "Your plugin is not updated! Latest version: $latestVersion";
         $this->getServer()->getLogger()->warning($message);
-        $this->getServer()->getPlayer($owner)->sendMessage($message);
     }
     @mkdir($this->getDataFolder());
     $this->saveResource("servers.yml");
