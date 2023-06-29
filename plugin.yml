@@ -15,7 +15,12 @@ commands:
   servers:
     description: Display available servers
     permission: serverswitcher.use
+  swrconfig:
+    description: Reload ServerSwitcher Config file
+    permission: serverswitcher.op
 permissions:
   serverswitcher.use:
     default: true
+  serverswitcher.op:
+    default: op
 ...
