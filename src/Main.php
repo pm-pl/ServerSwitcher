@@ -58,7 +58,7 @@ public function onCommand(CommandSender $sender, Command $command, string $label
                 $serverNames = [];
                 foreach ($serverData as $index => $server) {
                     $name = $server["name"] ?? "Unknown";
-                    $serverNames[] = "Server" . ($index + 1) . ($server["port"] ?? "") . "**";
+                    $serverNames[] = "Server" . ($index + 1);
                 }
 
                 $sender->sendMessage(implode(", ", $serverNames));
