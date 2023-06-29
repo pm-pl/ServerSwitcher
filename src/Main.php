@@ -65,6 +65,5 @@ public function onCommand(CommandSender $sender, Command $command, string $label
 
                 return true;
         }
-        return false;
     }
 }
