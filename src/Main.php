@@ -14,7 +14,7 @@ use pocketmine\Server;
 class Main extends PluginBase{
   public $servers;
   public $serversConfig;
-private function reloadConfig(): void{
+public function reloadConfig(): void{
   $this->serversConfig->reload();
   }
 public function onEnable(): void{
