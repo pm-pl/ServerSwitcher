@@ -26,7 +26,6 @@ public function onEnable(): void{
     $data = json_decode($response, true);
     $latestVersion = $data[0]['version'];
   
-    $this->getLogger()->info($this->versionInfo::VERSION . $latestVersion);
     if ($this->versionInfo::VERSION !== $latestVersion) {
         $message = "Your plugin is not updated! Latest version: $latestVersion";
         $this->getServer()->getLogger()->warning($message);
