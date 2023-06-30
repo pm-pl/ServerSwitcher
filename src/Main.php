@@ -15,6 +15,7 @@ use pocketmine\Server;
 class Main extends PluginBase{
   public $versionInfo = VersionInfo::class;
   public $serversConfig;
+  public $servers;
   public $version;
   public $data;
 public function reloadConfig(): void{
