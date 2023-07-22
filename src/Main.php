@@ -9,7 +9,7 @@ use pocketmine\{
     command\CommandSender,
     plugin\PluginBase,
     player\Player,
-    utils\Config;
+    utils\Config,
     Server
 };
 
