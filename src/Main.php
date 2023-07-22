@@ -4,45 +4,38 @@ declare(strict_types=1);
 
 namespace iMD14\ServerSwitcher;
 
-use pocketmine\plugin\PluginBase;
-use pocketmine\player\Player;
-use pocketmine\command\Command;
-use pocketmine\command\CommandSender;
-use pocketmine\utils\Config;
-use iMD14\ServerSwitcher\VersionInfo;
-use pocketmine\Server;
+use pocketmine\{
+    command\Command,
+    command\CommandSender,
+    plugin\PluginBase,
+    player\Player,
+    utils\Config;
+    Server
+};
+
+use libpmquery\{
+    PMQuery,
+    PmQueryException
+};
 
 class Main extends PluginBase{
-  public $versionInfo = VersionInfo::class;
   public $serversConfig;
   public $servers;
-  public $version;
-  public $data;
-public function reloadConfig(): void{
-  $this->serversConfig->reload();
-  }
-public function onEnable(): void{
-    $url = "https://poggit.pmmp.io/plugins.json?name=ServerSwitcher";
-    $response = file_get_contents($url);
-    $data = json_decode($response, true);
-    $latestVersion = $data[0]['version'];
   
-    if ($this->versionInfo::VERSION !== $latestVersion) {
-        $message = "Your plugin is not updated! Latest version: $latestVersion";
-        $this->getServer()->getLogger()->warning($message);
-    }
-    @mkdir($this->getDataFolder());
+  public function reloadConfig(): void{
+    $this->serversConfig->reload();
+  }
+  
+  public function onEnable(): void{
     $this->saveResource("servers.yml");
-    #$this->saveDefaultConfig();
-    $this->getResource("servers.yml");
     $this->servers = new Config($this->getDataFolder() . "servers.yml", Config::YAML);
   }
 
-public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
+  public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
     switch($command->getName()) {
         case "server":
             if(count($args) !== 1) {
-                $sender->sendMessage("/server <name>");
+                $sender->sendMessage("§4/server <name>");
                 return false;
             }
             $config = new Config($this->getDataFolder() . "servers.yml", Config::YAML);
@@ -51,17 +44,22 @@ public function onCommand(CommandSender $sender, Command $command, string $label
             $name = $args[0];
             foreach($servers as $server) {
                 if($server['name'] == $name) {
-                    $sender->sendMessage("Taking you to " . $server['ip'] . ":" . $server['port']);
-                    $sender->sendMessage($server['ip'] . ":" . $server['port']);
-                    if ($sender instanceof Player) {
+                    // Exception
+                    try{
+                        $query = PMQuery::query($server['ip'], $server['port']);
+                        
+                        $sender->sendMessage("§6Taking you to " . $server['ip'] . ":" . $server['port']);
+                        if ($sender instanceof Player) {
                         $sender->transfer($server['ip'], $server['port']);
-                    } else {
-                        $sender->sendMessage("Cannot transfer you to " . $server['name']);
-                    }
+                        }
+
+                    } catch PmQueryException $e){
+                        $this->sendMessage("§4An error occurred while trying to transfer you");
+                    }}
                     return true;
                 }
             }
-            $sender->sendMessage("Server not found: $name");
+            $sender->sendMessage("§4The server `$name` cannot be found");
             return false;
         default:
             return false;
