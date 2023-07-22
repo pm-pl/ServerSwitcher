@@ -13,11 +13,6 @@ use pocketmine\{
     Server
 };
 
-use libpmquery\{
-    PMQuery,
-    PmQueryException
-};
-
 class Main extends PluginBase{
   public $serversConfig;
   public $servers;
@@ -44,18 +39,15 @@ class Main extends PluginBase{
             $name = $args[0];
             foreach($servers as $server) {
                 if($server['name'] == $name) {
-                    // Exception
-                    try{
-                        $query = PMQuery::query($server['ip'], $server['port']);
-                        
-                        $sender->sendMessage("§6Taking you to " . $server['ip'] . ":" . $server['port']);
-                        if ($sender instanceof Player) {
+                    
+                    $sender->sendMessage("§6Taking you to " . $server['ip'] . ":" . $server['port']);
+                    if ($sender instanceof Player) {
                         $sender->transfer($server['ip'], $server['port']);
-                        }
-
-                    } catch PmQueryException $e){
+                        break;
+                    } else {
                         $this->sendMessage("§4An error occurred while trying to transfer you");
-                    }}
+                        break;
+                    }
                     return true;
                 }
             }
