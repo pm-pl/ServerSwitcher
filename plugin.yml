@@ -2,7 +2,7 @@
 name: ServerSwitcher
 description: a plugin adds a simple server switching command to your server allowing
   players to quickly switch between different servers on the network
-version: 1.2.0
+version: 1.1.2
 authors:
 - iMD14
 main: iMD14\ServerSwitcher\Main
