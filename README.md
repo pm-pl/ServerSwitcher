@@ -9,3 +9,5 @@ ServerSwitcher is a pocketmine-mp plugin adds a simple command to your server al
 - serverswitcher.op
 # How to setup?
 You need to config the servers.yml configuration file in plugin_data/ServerSwitcher folder
+# Contact
+If you need to reach me, feel free to add me on discord: iMD14
