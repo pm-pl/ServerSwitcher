@@ -45,10 +45,9 @@ class Main extends PluginBase{
                         $sender->transfer($server['ip'], $server['port']);
                         break;
                     } else {
-                        $this->sendMessage("§4An error occurred while trying to transfer you");
+                        $sender->sendMessage("§4An error occurred while trying to transfer you");
                         break;
                     }
-                    return true;
                 }
             }
             $sender->sendMessage("§4The server `$name` cannot be found");
