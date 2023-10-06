@@ -1,3 +1,5 @@
+**IMPORTANT** We arent going to update the plugin again since we went to develop java plugins.
+
 # ServerSwitcher
 ServerSwitcher is a pocketmine-mp plugin adds a simple command to your server allowing your players to quickly switch between different servers on the network
 ## Commands
